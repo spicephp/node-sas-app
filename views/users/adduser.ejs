@@ -1,0 +1,73 @@
+
+  <%- include('../includes/header') %>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+       <%- include('../includes/sidebar') %>
+      <!-- Main -->
+      <main class="col-md-10 ms-sm-auto px-md-4 py-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+          <h1 class="h2">Create User</h1>
+          <div class="btn-toolbar mb-2 mb-md-0">
+                 <p>Welcome Back, <%= userinfo %>!</p>
+          </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="row">
+        <div class="col-md-12">
+    <div class="row">
+    <div class="col-md-12">
+    <div class="row justify-content-center">
+    <div class="col-md-6">
+    <% if (successMsg.length > 0) { %>
+      <div style="color: green; font-weight: bold;text-align: left;">
+        <p><%= successMsg[0] %></p>
+    </div>
+    <% } %>
+    <% if (errorMsg.length > 0) { %>
+      <div style="color: red; font-weight: bold;text-align: left;">
+        <p><%= errorMsg[0] %></p>
+    </div>
+    <% } %>
+        <form action="/users/create" method="POST">
+            <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <div class="mb-3">
+            <label for="designation" class="form-label">Designation</label>
+            <input type="text" class="form-control" id="designation" name="designation">
+            </div>
+            <div class="mb-3">
+            <label for="phone" class="form-label">Phone</label>
+            <input type="text" class="form-control" id="phone" name="phone">
+            </div>
+            <div class="mb-3">
+            <label for="address" class="form-label">Address</label>
+            <input type="text" class="form-control" id="address" name="address">
+            </div>
+            <button type="submit" class="btn btn-primary">Add User</button>
+            <a href="/users" class="btn btn-secondary ms-2">Back</a>
+        </form>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </main>
+    </div>
+    </div>
+  <%- include('../includes/footer') %>
+
+
+

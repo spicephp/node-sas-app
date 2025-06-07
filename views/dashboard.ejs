@@ -1,0 +1,55 @@
+  <%- include('./includes/header') %>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+       <%- include('./includes/sidebar') %>
+      <!-- Main -->
+      <main class="col-md-10 ms-sm-auto px-md-4 py-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+          <h1 class="h2">Dashboard</h1>
+          <div class="btn-toolbar mb-2 mb-md-0">
+                <p>Welcome Back, <%= userinfo.username %>!</p>
+          </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <div class="card text-white bg-primary">
+              <div class="card-body">
+                <h5 class="card-title">Total Users</h5>
+                <p class="card-text fs-3">0,000</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card text-white bg-success">
+              <div class="card-body">
+                <h5 class="card-title">Revenue</h5>
+                <p class="card-text fs-3">0,000</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card text-white bg-warning">
+              <div class="card-body">
+                <h5 class="card-title">Subscriptions</h5>
+                <p class="card-text fs-3">0,000</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Placeholder for Charts or Tables -->
+        <div class="card mb-4">
+          <div class="card-header">
+            Recent Activity
+          </div>
+          <div class="card-body">
+            <p>No recent activity found.</p>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <%- include('./includes/footer') %>

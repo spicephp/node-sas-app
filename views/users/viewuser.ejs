@@ -1,0 +1,50 @@
+
+  <%- include('../includes/header') %>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+       <%- include('../includes/sidebar') %>
+      <!-- Main -->
+      <main class="col-md-10 ms-sm-auto px-md-4 py-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+          <h1 class="h2">User Details</h1>
+          <div class="btn-toolbar mb-2 mb-md-0">
+                 <p>Welcome Back, <%= userinfo %>!</p>
+          </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="row">
+        <div class="col-md-12">
+    <div class="row">
+    <div class="col-md-12">
+    <div class="row">
+    <div class="col-md-6">
+    <% if (message.length > 0) { %>
+      <div style="color: green; font-weight: bold;text-align: left;">
+      <p><%= message[0] %></p>
+    </div>
+    <% } %>
+        <div class="mb-3">
+            <p>Email : <%= user.email || '' %></p>
+        </div>
+        <div class="mb-3">
+            <p>Designation : <%= user.designation || '' %></p>
+        </div>
+        <div class="mb-3">
+            <p>Phone : <%= user.phone || '' %></p>
+        </div>
+        <div class="mb-3">
+            <p>Address : <%= user.address || '' %></p> 
+        </div>
+        <a href="/users" class="btn btn-secondary ms-2">Back</a>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </main>
+    </div>
+    </div>
+  <%- include('../includes/footer') %>

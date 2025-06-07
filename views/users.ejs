@@ -1,0 +1,79 @@
+<%- include('./includes/header') %>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+       <%- include('./includes/sidebar') %>
+      <!-- Main -->
+      <main class="col-md-10 ms-sm-auto px-md-4 py-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+          <h1 class="h2">Users</h1>
+          <div class="btn-toolbar mb-2 mb-md-0">
+                <p>Welcome Back, <%= userinfo %>!</p>
+                
+          </div>
+        </div>
+        <!-- Users Table -->
+        <div class="card mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+        <span>Users</span>
+           <a href="/users/add" class="btn btn-primary btn-sm">Add User</a>
+        </div>
+          <div class="card-body">
+            <% if (successMsg.length > 0) { %>
+            <div style="color: green; font-weight: bold;text-align: left;">
+            <p><%= successMsg[0] %></p>
+            </div>
+            <% } %>
+            <% if (errorMsg.length > 0) { %>
+            <div style="color: red; font-weight: bold;text-align: left;">
+            <p><%= errorMsg[0] %></p>
+            </div>
+            <% } %>
+            <% if (users && users.length > 0) { %>
+              <div class="table-responsive">
+                <table id="usersTable" class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Username</th>
+                      <th>Email</th>
+                      <th>Designation</th>
+                      <th>Phone</th>
+                      <th>Address</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% users.forEach(function(user, idx) { %>
+                      <tr>
+                        <td><%= idx + 1 %></td>
+                        <td><%= user.username %></td>
+                        <td><%= user.email %></td>
+                        <td><%= user.designation || '' %></td>
+                        <td><%= user.phone || '' %></td>
+                        <td><%= user.address || '' %></td>
+                        <td>
+
+                        <!-- Action buttons -->
+                          <% if (user.username !== userinfo) { %>
+                        <a href="/users/view/<%= user.id %>" class="btn btn-info btn-sm">View</a>
+                        <a href="/users/edit/<%= user.id %>" class="btn btn-warning btn-sm">Edit</a>
+                        <form action="/users/delete/<%= user.id %>?_method=DELETE" method="POST" style="display:inline;">
+                          <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure want to delete this user?')">Delete</button>
+                        </form>
+                         <% } %>
+                        </td>
+                      </tr>
+                    <% }) %>
+                  </tbody>
+                </table>
+              </div>
+            <% } else { %>
+              <p>No users found.</p>
+            <% } %>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <%- include('./includes/footer') %>

@@ -1,0 +1,111 @@
+  <%- include('./includes/header') %>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+       <%- include('./includes/sidebar') %>
+      <!-- Main -->
+      <main class="col-md-10 ms-sm-auto px-md-4 py-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+          <h1 class="h2">User Profile</h1>
+          <div class="btn-toolbar mb-2 mb-md-0">
+                <p>Welcome Back, <%= userinfo.username %>!</p>
+          </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="row">
+        <div class="col-md-12">
+        <div class="card">
+            <div class="row">
+            <div class="col-md-4">
+                <div class="card-body ">
+                <div class="text-start ">
+                <img src="<%= userinfo.profile_image || '/uploads/default-profile.png' %>" 
+                alt="Profile Image" 
+                style="width: 100px; height: 100px; border-radius: 50%;">
+                  <form action="/updateprofilepicture" method="post" enctype="multipart/form-data">
+                     <input type="file" name="profile_picture" accept="image/*" required>
+                     <button type="submit" class="btn btn-success btn-sm">Upload</button>
+                </form>
+                  <p><strong>Designation:</strong>  <%= userinfo.designation %></p>
+                  <p><strong>Email:</strong>  <%= userinfo.email %></p>
+                  <p><strong>Phone:</strong> <%= userinfo.phone %></p>
+                  <p><strong>Address:</strong> <%= userinfo.address %></p>
+                </div>
+            </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card-body"> 
+                <% if (successMsg.length > 0) { %>
+                  <div style="color: green; font-weight: bold;text-align: center;">
+                    <p><%= successMsg[0] %></p>
+                  </div>
+                  <% } %>
+                <% if (errorMsg.length > 0) { %>
+                <div style="color: green; font-weight: bold;text-align: center;">
+                <p><%= errorMsg[0] %></p>
+                </div>
+                <% } %>
+                      <form action="/updateprofile" method="post" class="p-4 border rounded bg-light">
+                        
+                    
+                        <div class="form-row mb-3">
+                            <div class="form-group col-12">
+                                <label for="designation" class="form-label">Designation</label>
+                                <input 
+                                    type="text" 
+                                    name="designation" 
+                                    placeholder="Designation" 
+                                    id="designation" 
+                                    value="<%= userinfo.designation %>" 
+                                    class="form-control">
+                            </div>
+                        </div>
+                    
+                        <div class="form-row mb-3">
+                            <div class="form-group col-12">
+                                <label for="phone" class="form-label">Phone</label>
+                                <input 
+                                    type="text" 
+                                    name="phone" 
+                                    placeholder="Phone" 
+                                    id="phone" 
+                                    value="<%= userinfo.phone %>" 
+                                    class="form-control">
+                            </div>
+                        </div>
+                    
+                        <div class="form-row mb-3">
+                            <div class="form-group col-12">
+                                <label for="address" class="form-label">Address</label>
+                                <textarea 
+                                    name="address" 
+                                    placeholder="Address" 
+                                    id="address" 
+                                    class="form-control" 
+                                    rows="3"><%= userinfo.address %></textarea>
+                            </div>
+                        </div>
+                    
+                        <div class="text-center">
+                            <input type="submit" value="Update Profile" class="btn btn-success btn-sm px-4">
+                        </div>
+                    </form>
+                     
+                </div>
+               
+            </div>
+        </div>
+          
+          
+        </div>
+      </div>
+        </div>
+
+
+      </main>
+    </div>
+  </div>
+  <%- include('./includes/footer') %>
+
+
