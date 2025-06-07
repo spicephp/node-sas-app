@@ -36,7 +36,7 @@ A simple Node.js application for user management, built with Express, MySQL, EJS
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/node-sas-app.git
+   git clone https://github.com/spicephp/node-sas-app.git
    cd node-sas-app
    ```
 
