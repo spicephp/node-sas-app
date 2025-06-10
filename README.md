@@ -90,4 +90,4 @@ ISC
 
 ---
 
-**Author:** Ritesh
+**Author:** RiTeSh
