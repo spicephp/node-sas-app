@@ -1,0 +1,57 @@
+  <%- include('./includes/header') %>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+       <%- include('./includes/sidebar') %>
+      <!-- Main -->
+      <main class="col-md-10 ms-sm-auto px-md-4 py-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+          <h1 class="h2">System Configration</h1>
+          <div class="btn-toolbar mb-2 mb-md-0">
+                <p>Welcome Back, <%= userinfo.username %>!</p>
+          </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="row">
+        <div class="col-md-12">
+        <div class="card">
+            <div class="row">
+
+            <div class="col-md-12">
+                <div class="card-body"> 
+                <% if (successMsg.length > 0) { %>
+                  <div style="color: green; font-weight: bold;text-align: center;">
+                    <p><%= successMsg[0] %></p>
+                  </div>
+                  <% } %>
+                <% if (errorMsg.length > 0) { %>
+                <div style="color: green; font-weight: bold;text-align: center;">
+                <p><%= errorMsg[0] %></p>
+                </div>
+                <% } %>
+    
+                    <form action="/settings/update" method="POST">
+  <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+     <input type="text" class="form-control" id="title" name="title" value="<%= siteinfo.title || '' %>" required>
+  </div>
+  <div class="mb-3">
+    <label for="description" class="form-label">Description</label>
+    <input type="text" class="form-control" id="description" name="description" value="<%= siteinfo.description || '' %>">
+  </div>
+  <button type="submit" class="btn btn-primary">Save Settings</button>
+</form>   
+                </div>
+               
+            </div>
+        </div>
+        </div>
+      </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <%- include('./includes/footer') %>
+
+

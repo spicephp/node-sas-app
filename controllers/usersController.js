@@ -359,6 +359,60 @@ exports.deleteUser = (request, response) => {
         }
     });
 }
+/**
+ * @settings
+ * Description: Show the System Configration options.
+ */
+exports.settings = (request, response) => {
+    
+        const username = request.session.username;
+        const successMsg = request.flash('successMsg');
+        const errorMsg = request.flash('errorMsg');
+        const Id = 1; // Assuming you want to fetch settings by ID
+        connection.query('SELECT * FROM settings WHERE id = ?', [Id], (error, results) => {
+            if (error) {
+                console.error('Database Error:', error);
+                request.flash('errorMsg', 'Internal server error.');
+                return response.redirect('/profile');
+            }
+            if (results.length > 0) {
+                response.render('settings', {
+                    userinfo: username,
+                    successMsg: successMsg,
+                    errorMsg: errorMsg,
+                    siteinfo: results[0]
+                });
+            } else {
+                request.flash('errorMsg', 'Settings not found.');
+                return response.redirect('/profile');
+            }
+        });
+};
+/**
+ * @updateSettings
+ * Description: Updates the system settings in the database.
+ */
+exports.updateSettings = (request, response) => {
+    const { title, description} = request.body;
+    const Id = 1; // Assuming you want to update settings by ID
+    connection.query(
+        'UPDATE settings SET title = ?, description = ? WHERE id = ?',
+        [title, description, Id],
+        (error, results) => {
+            if (error) {
+                console.error('Database Error:', error);
+                request.flash('errorMsg', 'Internal server error.');
+                return response.redirect('/settings');
+            }
+            if (results.affectedRows > 0) {
+                request.flash('successMsg', 'Settings updated successfully!');
+                return response.redirect('/settings');
+            } else {
+                request.flash('errorMsg', 'Settings not found.');
+                return response.redirect('/settings');
+            }
+        });
+}
 /*
  @logout
  Description: the user from the session and redirect to the home page 

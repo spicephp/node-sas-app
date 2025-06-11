@@ -3,8 +3,7 @@ const router = express.Router();
 const path = require('path');
 const multer = require('multer');
 const usersController = require('../controllers/usersController');
-
-
+const ensureAuthenticated = require('../middleware/auth');
 
 // Configure multer for file storage
 const storage = multer.diskStorage({
@@ -24,6 +23,8 @@ router.get('/', usersController.login);
 router.get('/signup', usersController.signup);
 router.post('/auth', usersController.authenticate);
 
+router.use(ensureAuthenticated);
+
 // Example: Add dashboard, profile, logout, registration, and upload routes
 router.get('/dashboard', usersController.dashboard);
 router.get('/profile', usersController.profile);
@@ -38,4 +39,6 @@ router.get('/users/view/:id',usersController.viewUser);
 router.delete('/users/delete/:id', usersController.deleteUser);
 router.get('/logout', usersController.logout);
 router.post('/register', usersController.register);
+router.get('/settings', usersController.settings);
+router.post('/settings/update', usersController.updateSettings);
 module.exports = router;
